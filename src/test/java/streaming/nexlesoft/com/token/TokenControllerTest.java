@@ -43,6 +43,18 @@ public class TokenControllerTest {
         refreshedTokens.put("token", "newJwtToken");
         refreshedTokens.put("refreshToken", "newRefreshToken");
 
+        // Mock service re-response
+        refreshedTokens.put("re-token", "re-newJwtToken");
+        refreshedTokens.put("tokenCore-refreshToken", "tokenCore-reNewRefrshToken");
+
+        // Mock service legalon-tech and sonar-link/legalforce-loc-app
+        refreshedTokens.put("legalon_technologies", "LOCD11992");
+        refreshedTokens.put("sonar-link", "legalforce/loc-app");
+
+        // Meck breakcrumb-token service (https://github.com/nvngon26400/ggtstore/issues/2)
+        refreshedTokens.put("breakcrumb", "token");
+        refreshedTokens.put("re-breakcrumb", "re-token");
+
         // Mock the behavior of the tokenService.refreshToken method
         when(tokenService.refreshToken(eq("validRefreshToken"))).thenReturn(
                 ResponseEntity.status(HttpStatus.OK).body(refreshedTokens)
